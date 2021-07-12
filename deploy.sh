@@ -15,7 +15,7 @@ done
 
 REPO=" https://github.com/hogsmill/todo.git"
 APPS=(
-  'todo,todo,3099,To Do'
+  'todo,todo,3098,To Do'
 )
 
 for ((i = 0; i < ${#APPS[@]}; i++))

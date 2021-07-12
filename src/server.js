@@ -7,7 +7,7 @@ const ON_DEATH = require('death')({uncaughtException: true})
 const os = require('os')
 const prod = os.hostname() == 'agilesimulations' ? true : false
 const logFile = prod ? process.argv[4] : 'server.log'
-const port = prod ? process.env.VUE_APP_PORT : 3099
+const port = prod ? process.env.VUE_APP_PORT : 3098
 const gameCollection =  prod ? process.env.VUE_APP_COLLECTION : 'todo'
 
 ON_DEATH((signal, err) => {
