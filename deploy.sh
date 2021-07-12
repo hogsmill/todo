@@ -13,9 +13,9 @@ do
   shift
 done
 
-REPO=" https://github.com/hogsmill/socket-test.git"
+REPO=" https://github.com/hogsmill/todo.git"
 APPS=(
-  'socket-test,socketTest,3016,Socket Test'
+  'todo,todo,3200,To Do'
 )
 
 for ((i = 0; i < ${#APPS[@]}; i++))
