@@ -9,9 +9,9 @@
           In Progress
         </th>
         <th>
-          Done
-          <i v-if="!doneExpanded" class="fas fa-caret-down" />
-          <i v-if="doneExpanded" class="fas fa-caret-up" />
+          Done ({{ doneTasks }})
+          <i v-if="!showDone" class="fas fa-eye" @click="expand()" />
+          <i v-if="showDone" class="fas fa-eye-slash" @click="collapse()" />
         </th>
       </tr>
     </thead>
@@ -24,7 +24,7 @@
           <Tasks :status="'Doing'" />
         </td>
         <td>
-          <Tasks :status="'Done'" />
+          <Tasks v-if="showDone" :status="'Done'" />
         </td>
       </tr>
     </tbody>
@@ -42,10 +42,21 @@ export default {
   },
   data() {
     return {
-      doneExpanded: false
+      showDone: false
+    }
+  },
+  computed: {
+    doneTasks() {
+      return this.$store.getters.getDoneTasks
     }
   },
   methods: {
+    expand() {
+      this.showDone = true
+    },
+    collapse() {
+      this.showDone = false
+    }
   }
 }
 </script>

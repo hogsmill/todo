@@ -33,7 +33,8 @@ export const store = new Vuex.Store({
     },
     currentApp: null,
     currentAppType: null,
-    tasks: []
+    tasks: [],
+    doneTasks: 0
   },
   getters: {
     getCurrentTab: (state) => {
@@ -56,6 +57,9 @@ export const store = new Vuex.Store({
     },
     getTasks: (state) => {
       return state.tasks
+    },
+    getDoneTasks: (state) => {
+      return state.doneTasks
     }
   },
   mutations: {
@@ -64,13 +68,19 @@ export const store = new Vuex.Store({
     },
     updateCurrentApp: (state, payload) => {
       state.currentApp = payload
-      console.log(state)
     },
     updateCurrentAppType: (state, payload) => {
       state.currentAppType = payload
     },
     updateTasks: (state, payload) => {
       state.tasks = payload
+      let done = 0
+      for (let i = 0; i < state.tasks.length; i++) {
+        if (state.tasks[i].status == 'Done') {
+          done = done + 1
+        }
+      }
+      state.doneTasks = done
     }
   },
   actions: {
