@@ -28,7 +28,8 @@ export const store = new Vuex.Store({
         'BA Shouting'
       ],
       'No Estimates': [
-        'Kanban Playground'
+        'Kanban Playground',
+        'Billy Bonkers'
       ]
     },
     currentApp: null,
