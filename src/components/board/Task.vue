@@ -180,7 +180,7 @@ export default {
       float: right;
     }
 
-    .edit-description {
+    #edit-description {
       width: 95%;
       height: 100px;
     }
