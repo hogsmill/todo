@@ -180,6 +180,11 @@ export default {
       float: right;
     }
 
+    .edit-description {
+      width: 95%;
+      height: 100px;
+    }
+
     &.bug {
       background-color: #fab9b4;
     }
