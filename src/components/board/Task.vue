@@ -10,8 +10,8 @@
       <i class="fas fa-bug" @click="toggleBug()" />
     </h4>
     <div v-if="!showDetails">
-      <span v-if="task.appType">AppType: {{ task.appType }}</span>
-      <span v-if="!task.appType">App: {{ task.app }}</span>
+      <span v-if="task.appType">{{ task.appType }}</span>
+      <span v-if="!task.appType">{{ task.app }}</span>
     </div>
     <div v-if="showDetails">
       <p v-if="!descriptionEditing">
