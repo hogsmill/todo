@@ -9,6 +9,10 @@
       <i v-if="titleEditing" class="far fa-save" @click="saveTitle()" />
       <i class="fas fa-bug" @click="toggleBug()" />
     </h4>
+    <div v-if="!showDetails">
+      <span v-if="task.appType">AppType: {{ task.appType }}</span>
+      <span v-if="!task.appType">App: {{ task.app }}</span>
+    </div>
     <div v-if="showDetails">
       <p v-if="!descriptionEditing">
         {{ task.description }}
