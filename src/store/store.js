@@ -16,6 +16,7 @@ export const store = new Vuex.Store({
       'Battleships',
       'Coin Game',
       'Context Switching',
+      'Death Start Builder',
       'No Estimates',
       'Pipeline Game'
     ],
