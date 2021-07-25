@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ filter }}
     <Task v-for="(task, index) in tasks" :key="index" :status="status" :filter="filter" :task="task" />
   </div>
 </template>
