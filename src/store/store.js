@@ -12,6 +12,7 @@ export const store = new Vuex.Store({
       'Done'
     ],
     apps: [
+      'General/Agile Simulations',
       'Assessment',
       'Battleships',
       'Coin Game',
