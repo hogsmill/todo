@@ -33,6 +33,7 @@
           <Tasks :status="'Doing'" />
         </td>
         <td>
+          {{ filter }}
           <Tasks v-if="showDone" :status="'Done'" :filter="filter" />
         </td>
       </tr>

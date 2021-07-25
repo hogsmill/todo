@@ -1,5 +1,6 @@
 <template>
   <div v-if="showTask(task)" class="task" :class="getClass()">
+    {{ filter }}
     <i v-if="showDetails" class="fas fa-caret-up details" @click="collapse()" />
     <i v-if="!showDetails" class="fas fa-caret-down details" @click="expand()" />
     <h4>
