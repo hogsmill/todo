@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Task v-for="(task, index) in tasks" :key="index" :status="status" :task="task" />
+    <Task v-for="(task, index) in tasks" :key="index" :status="status" :filter="filter" :task="task" />
   </div>
 </template>
 
@@ -12,7 +12,8 @@ export default {
     Task
   },
   props: [
-    'status'
+    'status',
+    'filter'
   ],
   computed: {
     tasks() {

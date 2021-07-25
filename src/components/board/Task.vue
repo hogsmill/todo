@@ -1,5 +1,5 @@
 <template>
-  <div v-if="task.status == status" class="task" :class="getClass()">
+  <div v-if="showTask(task)" class="task" :class="getClass()">
     <i v-if="showDetails" class="fas fa-caret-up details" @click="collapse()" />
     <i v-if="!showDetails" class="fas fa-caret-down details" @click="expand()" />
     <h4>
@@ -80,7 +80,8 @@ export default {
   },
   props: [
     'task',
-    'status'
+    'status',
+    'filter'
   ],
   data() {
     return {
@@ -112,6 +113,17 @@ export default {
         str = str + ' bug'
       }
       return str
+    },
+    showTask(task) {
+      let show = true
+      if (task.status != this.status) {
+        show = false
+      } else {
+        if (task.status == 'Done') {
+          show = !this.filter || task.app == this.filter
+        }
+      }
+      return show
     },
     expand() {
       this.showDetails = true

@@ -12,6 +12,15 @@
           Done ({{ doneTasks }})
           <i v-if="!showDone" class="fas fa-eye" @click="expand()" />
           <i v-if="showDone" class="fas fa-eye-slash" @click="collapse()" />
+          <br>
+          <select :value="filter">
+            <option value="">
+              All
+            </option>
+            <option v-for="(app, index) in apps" :key="index">
+              {{ app }}
+            </option>
+          </select>
         </th>
       </tr>
     </thead>
@@ -24,7 +33,7 @@
           <Tasks :status="'Doing'" />
         </td>
         <td>
-          <Tasks v-if="showDone" :status="'Done'" />
+          <Tasks v-if="showDone" :status="'Done'" :filter="filter" />
         </td>
       </tr>
     </tbody>
@@ -42,10 +51,14 @@ export default {
   },
   data() {
     return {
-      showDone: false
+      showDone: false,
+      filter: ''
     }
   },
   computed: {
+    apps() {
+      return this.$store.getters.getApps
+    },
     doneTasks() {
       return this.$store.getters.getDoneTasks
     }
