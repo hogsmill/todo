@@ -33,7 +33,7 @@
           <Tasks :status="'Doing'" />
         </td>
         <td>
-          {{ filter }}
+          Filter: '{{ filter }}'
           <Tasks v-if="showDone" :status="'Done'" :filter="filter" />
         </td>
       </tr>
@@ -73,7 +73,7 @@ export default {
     },
     setFilter() {
       const filter = document.getElementById('filter').value
-      this.filter == filter
+      this.filter = filter
     }
   }
 }
