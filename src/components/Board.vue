@@ -13,7 +13,7 @@
           <i v-if="!showDone" class="fas fa-eye" @click="expand()" />
           <i v-if="showDone" class="fas fa-eye-slash" @click="collapse()" />
           <br>
-          <select :value="filter">
+          <select id="filter" @change="setFilter()">
             <option value="">
               All
             </option>
@@ -69,6 +69,10 @@ export default {
     },
     collapse() {
       this.showDone = false
+    },
+    setFilter() {
+      const filter = document.getElementById('filter').value
+      this.filter == filter
     }
   }
 }
