@@ -122,7 +122,7 @@ export default {
         if (task.status == 'Done') {
           show = !this.filter || task.app == this.filter
         }
-        console.log(task, filter, show)
+        console.log(task, this.filter, show)
       }
       return show
     },
