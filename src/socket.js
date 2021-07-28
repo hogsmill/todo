@@ -21,6 +21,8 @@ bus.$on('sendAddTask', (data) => { socket.emit('sendAddTask', data) })
 
 bus.$on('sendUpdateTask', (data) => { socket.emit('sendUpdateTask', data) })
 
+bus.$on('sendCloneTask', (data) => { socket.emit('sendCloneTask', data) })
+
 bus.$on('sendDeleteTask', (data) => { socket.emit('sendDeleteTask', data) })
 
 // Receive

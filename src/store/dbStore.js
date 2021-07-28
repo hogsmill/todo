@@ -8,6 +8,15 @@ function _updateTasks(db, io) {
   })
 }
 
+function _addTask(db, io, data) {
+
+  data.id = uuidv4()
+  db.gameCollection.insertOne(data, (err) => {
+    if (err) throw err
+    _updateTasks(db, io)
+  })
+}
+
 module.exports = {
 
   getTasks: function(db, io, debugOn) {
@@ -21,11 +30,7 @@ module.exports = {
 
     if (debugOn) { console.log('addTask', data) }
 
-    data.id = uuidv4()
-    db.gameCollection.insertOne(data, (err) => {
-      if (err) throw err
-      _updateTasks(db, io)
-    })
+    _addTask(db, io, data)
   },
 
   updateTask: function(db, io, data, debugOn) {
@@ -43,13 +48,24 @@ module.exports = {
     })
   },
 
+  cloneTask: function(db, io, data, debugOn) {
+
+    if (debugOn) { console.log('deleteTask', data) }
+
+    db.gameCollection.findOne({id: data.id}, function(err, res) {
+       if (err) throw err
+       delete res._id
+       res.title = '[CLONE]: ' + res.title
+      _addTask(db, io, res)
+    })
+  },
+
   deleteTask: function(db, io, data, debugOn) {
 
     if (debugOn) { console.log('deleteTask', data) }
 
     db.gameCollection.deleteOne({id: data.id}, function(err, res) {
        if (err) throw err
-
       _udateTasks(db, io)
     })
   }

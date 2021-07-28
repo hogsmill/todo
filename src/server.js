@@ -105,6 +105,8 @@ MongoClient.connect(url, { useUnifiedTopology: true, maxIdleTimeMS: maxIdleTime 
 
     socket.on('sendUpdateTask', (data) => { dbStore.updateTask(db, io, data, debugOn) })
 
+    socket.on('sendCloneTask', (data) => { dbStore.cloneTask(db, io, data, debugOn) })
+
     socket.on('sendDeleteTask', (data) => { dbStore.deleteTask(db, io, data, debugOn) })
   })
 })

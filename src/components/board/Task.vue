@@ -53,8 +53,11 @@
       <button v-if="task.status != 'To Do'" class="btn btn-info" @click="moveLeft()">
         <i class="fas fa-long-arrow-alt-left" />
       </button>
-      <button class="btn btn-info" @click="deleteTaskTask()">
+      <button class="btn btn-info" @click="deleteTask()">
         Delete
+      </button>
+      <button class="btn btn-info" @click="cloneTask()">
+        <i class="far fa-clone" title="Clone" />
       </button>
       <button v-if="task.status != 'Done'" class="btn btn-info" @click="moveRight()">
         <i class="fas fa-long-arrow-alt-right" />
@@ -176,6 +179,9 @@ export default {
     },
     deleteTask() {
       bus.$emit('sendDeleteTask', {id: this.task.id})
+    },
+    cloneTask() {
+      bus.$emit('sendCloneTask', {id: this.task.id})
     }
   }
 }
