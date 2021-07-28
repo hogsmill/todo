@@ -5,7 +5,7 @@ const prod = location.hostname != 'localhost'
 
 let connStr
 if (location.hostname == 'localhost') {
-  connStr = 'http://localhost:3200'
+  connStr = 'http://localhost:3098'
 } else {
   connStr = 'https://agilesimulations.co.uk:' + process.env.VUE_APP_PORT
 }
