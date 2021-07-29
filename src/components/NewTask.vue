@@ -9,6 +9,7 @@
           <input type="text" id="task-name">
         </td>
       </tr>
+      <TaskType />
       <AppSelect />
       <AppTypeSelect />
     </table>
@@ -23,11 +24,13 @@ import { v4 as uuidv4 } from 'uuid'
 
 import bus from '../socket.js'
 
+import TaskType from './board/TaskType.vue'
 import AppSelect from './board/AppSelect.vue'
 import AppTypeSelect from './board/AppTypeSelect.vue'
 
 export default {
   components: {
+    TaskType,
     AppSelect,
     AppTypeSelect
   },
@@ -48,13 +51,14 @@ export default {
   methods: {
     addTask() {
       const title = document.getElementById('task-name').value
+      const marketing = document.getElementById('marketing-task').checked
       const app = this.currentApp
       let appType
       if (this.currentApp) {
         appType = this.currentAppType
       }
-      bus.$emit('sendAddTask', {title: title, app: app, appType: appType, status: 'To Do'})
-      this.$store.dispatch('updateCurrentTab', 'board')
+      bus.$emit('sendAddTask', {title: title, app: app, appType: appType, marketing: marketing, status: 'To Do'})
+      this.$store.dispatch('updateCurrentTab', 'product')
     }
   }
 }

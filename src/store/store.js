@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
   state: {
-    currentTab: 'board',
+    currentTab: 'product',
     statuses: [
       'To Do',
       'Doing',
@@ -36,8 +36,10 @@ export const store = new Vuex.Store({
     },
     currentApp: null,
     currentAppType: null,
-    tasks: [],
-    doneTasks: 0
+    productTasks: [],
+    marketingTasks: [],
+    productDoneTasks: 0,
+    marketingDoneTasks: 0
   },
   getters: {
     getCurrentTab: (state) => {
@@ -59,10 +61,10 @@ export const store = new Vuex.Store({
       return state.currentAppType
     },
     getTasks: (state) => {
-      return state.tasks
+      return state.currentTab == 'marketing' ? state.marketingTasks : state.productTasks
     },
     getDoneTasks: (state) => {
-      return state.doneTasks
+      return state.currentTab == 'marketing' ? state.marketingDoneTasks : state.productDoneTasks
     }
   },
   mutations: {
@@ -76,14 +78,28 @@ export const store = new Vuex.Store({
       state.currentAppType = payload
     },
     updateTasks: (state, payload) => {
+      const product = []
+      const marketing = []
       state.tasks = payload
-      let done = 0
+      let productDone = 0
+      let marketingDone = 0
       for (let i = 0; i < state.tasks.length; i++) {
-        if (state.tasks[i].status == 'Done') {
-          done = done + 1
+        if (state.tasks[i].marketing) {
+          marketing.push(state.tasks[i])
+          if (state.tasks[i].status == 'Done') {
+            marketingDone = marketingDone + 1
+          }
+        } else {
+          product.push(state.tasks[i])
+          if (state.tasks[i].status == 'Done') {
+            productDone = productDone + 1
+          }
         }
       }
-      state.doneTasks = done
+      state.productTasks = product
+      state.marketingTasks = marketing
+      state.productDoneTasks = productDone
+      state.marketingDoneTasks = marketingDone
     }
   },
   actions: {

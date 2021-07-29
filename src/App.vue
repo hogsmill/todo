@@ -6,7 +6,8 @@
     <a v-if="currentTab == 'board'" target="blank" href="https://docs.google.com/spreadsheets/d/1hSoRxFervY317e6Z3P2Z1aK4RblAC6zBPrCiTw6J6PM/edit#gid=0">
       Death Star Builder Google doc
     </a>
-    <Board v-if="currentTab == 'board'" />
+    <Board v-if="currentTab == 'product'" :marketing="false" />
+    <Board v-if="currentTab == 'marketing'" :marketing="true" />
   </div>
 </template>
 

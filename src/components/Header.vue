@@ -2,8 +2,11 @@
   <nav class="navbar navbar-expand-lg navbar-light mb-4">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item" :class="{ active: currentTab == 'board' }">
-          <a class="nav-link pointer" @click="setCurrentTab('board')">Board</a>
+        <li class="nav-item" :class="{ active: currentTab == 'product' }">
+          <a class="nav-link pointer" @click="setCurrentTab('product')">Product</a>
+        </li>
+        <li class="nav-item" :class="{ active: currentTab == 'marketing' }">
+          <a class="nav-link pointer" @click="setCurrentTab('marketing')">Marketing</a>
         </li>
         <li class="nav-item" :class="{ active: currentTab == 'new-task' }">
           <a class="nav-link pointer" @click="setCurrentTab('new-task')">New Task</a>
