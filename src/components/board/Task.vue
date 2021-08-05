@@ -111,7 +111,11 @@ export default {
   },
   methods: {
     getClass() {
-      let str = this.task.status.replace(/\s/g, '-')
+      console.log(this.task)
+      let str = this.task.status.replace(/\s/g, '-').toLowerCase()
+      if (this.task.app) {
+        str = str + ' ' + this.task.app.replace(/\s/g, '-').toLowerCase()
+      }
       if (this.task.bug) {
         str = str + ' bug'
       }
@@ -192,6 +196,18 @@ export default {
     border: 1px solid;
     margin: 6px;
 
+    &.assessment {
+      background-color: lightblue;
+    }
+    &.coin-game {
+      background-color: blanchedalmond;
+    }
+    &.no-estimates {
+      background-color: darkkhaki;
+    }
+    &.death-star-builder {
+      background-color: #ccc;
+    }
     .details {
       color: #666;
       font-size: x-large;
