@@ -66,7 +66,7 @@ module.exports = {
 
     db.gameCollection.deleteOne({id: data.id}, function(err, res) {
        if (err) throw err
-      _udateTasks(db, io)
+      _updateTasks(db, io)
     })
   }
 
