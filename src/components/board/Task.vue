@@ -208,6 +208,9 @@ export default {
     &.death-star-builder {
       background-color: #ccc;
     }
+    &.planning-poker {
+      background-color: teal;
+    }
     .details {
       color: #666;
       font-size: x-large;
