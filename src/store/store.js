@@ -19,7 +19,9 @@ export const store = new Vuex.Store({
       'Context Switching',
       'Death Star Builder',
       'No Estimates',
-      'Pipeline Game'
+      'Pipeline Game',
+      'Planning Poker'
+
     ],
     appTypes: {
       'Assessment': [
