@@ -26,7 +26,9 @@ export const store = new Vuex.Store({
     appTypes: {
       'Assessment': [
         '5 Dysfunctions',
-        'Team Health Check'
+        'Team Health Check',
+        'Agile Assessment',
+        'Scrum Master Assessment'
       ],
       'Context Switching': [
         'BA Shouting'
