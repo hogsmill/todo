@@ -25,17 +25,17 @@ export default {
     Board,
     NewTask,
   },
+  computed: {
+    currentTab() {
+      return this.$store.getters.getCurrentTab
+    }
+  },
   created() {
     bus.$emit('sendGetTasks')
 
     bus.$on('updateTasks', (data) => {
       this.$store.dispatch('updateTasks', data)
     })
-  },
-  computed: {
-    currentTab() {
-      return this.$store.getters.getCurrentTab
-    }
   },
   methods: {
   }
