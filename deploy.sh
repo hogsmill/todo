@@ -21,6 +21,8 @@ APPS=(
   'todo-personal,todoPersonal,3097,To Do Personal'
 )
 
+npm install --legacy-peer-deps
+rm -rf node_modules/.cache
 for ((i = 0; i < ${#APPS[@]}; i++))
 do
   REC="${APPS[$i]}"
@@ -85,8 +87,12 @@ do
       kill -9 $SERVER
     fi
   fi
-  rm -rf node_modules
-  ln -s ../$MAINAPP/node_modules node_modules
+  if [ $i == 0 ]; then
+    rm -rf $DIR/node_modules/.cache
+  else
+    rm -rf node_modules
+    ln -s ../$MAINAPP/node_modules node_modules
+  fi
   rm -rf $DIR/dist
 done
 
