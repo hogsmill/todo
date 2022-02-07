@@ -16,6 +16,7 @@ done
 
 REPO=" https://github.com/hogsmill/todo.git"
 APPS=(
+  'todo-personal,todoPersonal,3097,To Do Personal'
   'todo,todo,3098,To Do'
 )
 
