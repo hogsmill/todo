@@ -14,10 +14,11 @@ do
   shift
 done
 
+MAINAPP="todo"
 REPO=" https://github.com/hogsmill/todo.git"
 APPS=(
-  'todo-personal,todoPersonal,3097,To Do Personal'
   'todo,todo,3098,To Do'
+  'todo-personal,todoPersonal,3097,To Do Personal'
 )
 
 for ((i = 0; i < ${#APPS[@]}; i++))
@@ -84,7 +85,8 @@ do
       kill -9 $SERVER
     fi
   fi
-  rm -rf $DIR/node_modules/.cache
+  rm -rf node_modules
+  ln -s ../$MAINAPP/node_modules node_modules
   rm -rf $DIR/dist
 done
 
