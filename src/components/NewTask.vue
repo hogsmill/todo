@@ -54,10 +54,10 @@ export default {
   methods: {
     addTask() {
       const title = document.getElementById('task-name').value
-      const marketing = document.getElementById('marketing-task').checked
+      const marketing = scope == 'apps' ? document.getElementById('marketing-task').checked : false
       const app = this.currentApp
       let appType
-      if (this.currentApp) {
+      if (this.currentApp && scope == 'apps') {
         appType = this.currentAppType
       }
       bus.$emit('sendAddTask', {title: title, app: app, appType: appType, marketing: marketing, status: 'To Do'})
