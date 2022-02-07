@@ -9,9 +9,9 @@
           <input type="text" id="task-name">
         </td>
       </tr>
-      <TaskType />
-      <AppSelect />
-      <AppTypeSelect />
+      <TaskType v-if="scope == 'apps'" />
+      <AppSelect v-if="scope == 'apps'" />
+      <AppTypeSelect v-if="scope == 'apps'" />
     </table>
     <button id="new-task-submit" class="btn btn-info" @click="addTask()">
       Add Task
@@ -35,6 +35,9 @@ export default {
     AppTypeSelect
   },
   computed: {
+    scope() {
+      return this.$store.getters.getScope
+    },
     apps() {
       return this.$store.getters.getApps
     },

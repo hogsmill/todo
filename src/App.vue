@@ -3,9 +3,6 @@
     <Header />
     <h1>To Do - Agile Simulations</h1>
     <NewTask v-if="currentTab == 'new-task'" />
-    <a v-if="currentTab == 'board'" target="blank" href="https://docs.google.com/spreadsheets/d/1hSoRxFervY317e6Z3P2Z1aK4RblAC6zBPrCiTw6J6PM/edit#gid=0">
-      Death Star Builder Google doc
-    </a>
     <Board v-if="currentTab == 'product'" :marketing="false" />
     <Board v-if="currentTab == 'marketing'" :marketing="true" />
   </div>
@@ -13,6 +10,8 @@
 
 <script>
 import bus from './socket.js'
+
+import params from './lib/params.js'
 
 import Header from './components/Header.vue'
 import Board from './components/Board.vue'
@@ -31,6 +30,14 @@ export default {
     }
   },
   created() {
+    if (location.hostname == 'localhost') {
+      let scope = params.getParam('scope')
+      scope = scope ? scope : 'apps'
+      this.$store.dispatch('updateScope', scope)
+    } else {
+      this.$store.dispatch('updateScope', process.env.VUE_APP_SCOPE)
+    }
+
     bus.$emit('sendGetTasks')
 
     bus.$on('updateTasks', (data) => {

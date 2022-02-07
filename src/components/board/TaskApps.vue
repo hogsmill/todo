@@ -3,7 +3,7 @@
     <i v-if="showDetails" class="fas fa-caret-up details" @click="collapse()" />
     <i v-if="!showDetails" class="fas fa-caret-down details" @click="expand()" />
     <h4>
-      <span v-if="!titleEditing">{{ task.title }}</span>
+      <span v-if="!titleEditing">{{ task.title }} {{ showDetails }}</span>
       <i v-if="!titleEditing" class="fas fa-edit" @click="editTitle()" />
       <input type="text" v-if="titleEditing" id="edit-title" :value="task.title">
       <i v-if="titleEditing" class="far fa-save" @click="saveTitle()" />
@@ -77,10 +77,6 @@ export default {
     AppSelect,
     AppTypeSelect
   },
-  components: {
-    AppSelect,
-    AppTypeSelect
-  },
   props: [
     'task',
     'status',
@@ -111,7 +107,6 @@ export default {
   },
   methods: {
     getClass() {
-      console.log(this.task)
       let str = this.task.status.replace(/\s/g, '-').toLowerCase()
       if (this.task.app) {
         str = str + ' ' + this.task.app.replace(/\s/g, '-').toLowerCase()

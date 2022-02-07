@@ -3,9 +3,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" :class="{ active: currentTab == 'product' }">
-          <a class="nav-link pointer" @click="setCurrentTab('product')">Product</a>
+          <a class="nav-link pointer" @click="setCurrentTab('product')">
+            <span v-if="scope == 'apps'">Product</span>
+            <span v-if="scope == 'personal'">Tasks</span>
+          </a>
         </li>
-        <li class="nav-item" :class="{ active: currentTab == 'marketing' }">
+        <li v-if="scope != 'personal'" class="nav-item" :class="{ active: currentTab == 'marketing' }">
           <a class="nav-link pointer" @click="setCurrentTab('marketing')">Marketing</a>
         </li>
         <li class="nav-item" :class="{ active: currentTab == 'new-task' }">
@@ -21,6 +24,9 @@ export default {
   computed: {
     currentTab() {
       return this.$store.getters.getCurrentTab
+    },
+    scope() {
+      return this.$store.getters.getScope
     }
   },
   methods: {

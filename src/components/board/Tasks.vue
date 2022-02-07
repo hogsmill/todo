@@ -1,21 +1,31 @@
 <template>
   <div>
-    <Task v-for="(task, index) in tasks" :key="index" :status="status" :filter="filter" :task="task" />
+    <div v-if="scope == 'apps'">
+      <TaskApps v-for="(task, index) in tasks" :key="index" :status="status" :filter="filter" :task="task" />
+    </div>
+    <div v-if="scope == 'personal'">
+      <TaskPersonal v-for="(task, index) in tasks" :key="index" :status="status" :filter="filter" :task="task" />
+    </div>
   </div>
 </template>
 
 <script>
-import Task from './Task.vue'
+import TaskApps from './TaskApps.vue'
+import TaskPersonal from './TaskPersonal.vue'
 
 export default {
   components: {
-    Task
+    TaskApps,
+    TaskPersonal,
   },
   props: [
     'status',
     'filter'
   ],
   computed: {
+    scope() {
+      return this.$store.getters.getScope
+    },
     tasks() {
       return this.$store.getters.getTasks
     }

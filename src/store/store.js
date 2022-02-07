@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     currentTab: 'product',
+    scope: 'apps',
     statuses: [
       'To Do',
       'Doing',
@@ -49,6 +50,9 @@ export const store = new Vuex.Store({
     getCurrentTab: (state) => {
       return state.currentTab
     },
+    getScope: (state) => {
+      return state.scope
+    },
     getStatuses: (state) => {
       return state.statuses
     },
@@ -77,6 +81,9 @@ export const store = new Vuex.Store({
     },
     updateCurrentApp: (state, payload) => {
       state.currentApp = payload
+    },
+    updateScope: (state, payload) => {
+      state.scope = payload
     },
     updateCurrentAppType: (state, payload) => {
       state.currentAppType = payload
@@ -112,6 +119,9 @@ export const store = new Vuex.Store({
     },
     updateCurrentApp: ({ commit }, payload) => {
       commit('updateCurrentApp', payload)
+    },
+    updateScope: ({ commit }, payload) => {
+      commit('updateScope', payload)
     },
     updateCurrentAppType: ({ commit }, payload) => {
       commit('updateCurrentAppType', payload)
