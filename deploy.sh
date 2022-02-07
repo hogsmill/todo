@@ -17,8 +17,8 @@ done
 MAINAPP="todo"
 REPO=" https://github.com/hogsmill/todo.git"
 APPS=(
-  'todo,todo,3098,To Do'
-  'todo-personal,todoPersonal,3097,To Do Personal'
+  'todo,todo,3098,To Do,apps'
+  'todo-personal,todoPersonal,3097,To Do Personal,personal'
 )
 
 npm install --legacy-peer-deps
@@ -31,6 +31,7 @@ do
   COLLECTION=`echo $REC | cut -d, -f2`
   PORT=`echo $REC | cut -d, -f3`
   APPNAME=`echo $REC | cut -d, -f4`
+  SCOPE=`echo $REC | cut -d, -f5`
 
   echo "------------------------------------------------"
   if [ -z "$APPNAME" ]; then
@@ -47,6 +48,7 @@ do
   ENVFILE="$DIR/.env"
   echo "VUE_APP_PORT=$PORT" > $ENVFILE
   echo "VUE_APP_COLLECTION=$COLLECTION" >> $ENVFILE
+  echo "VUE_APP_SCOPE=$SCOPE" >> $ENVFILE
   if [ ! -z "$APPNAME" ]; then
     echo "VUE_APP_NAME=$APPNAME" >> $ENVFILE
   fi
