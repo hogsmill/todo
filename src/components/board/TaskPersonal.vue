@@ -106,6 +106,10 @@ export default {
     border: 1px solid;
     margin: 6px;
 
+    h4 {
+      font-size: 1.25rem;
+    }
+    
     .details {
       color: #666;
       font-size: x-large;
