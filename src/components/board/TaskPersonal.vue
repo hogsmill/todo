@@ -4,6 +4,7 @@
     <i v-if="!showDetails" class="fas fa-caret-down details" @click="expand()" />
     <h4>
       <span v-if="!titleEditing">{{ task.title }}</span>
+      <i class="fas fa-exclamation-circle" :class="{ 'is-urgent': task.urgent }" @click="toggleUrgent(task)" />
       <i v-if="!titleEditing" class="fas fa-edit" @click="editTitle()" />
       <input type="text" v-if="titleEditing" id="edit-title" :value="task.title">
       <i v-if="titleEditing" class="far fa-save" @click="saveTitle()" />
@@ -84,6 +85,9 @@ export default {
       bus.$emit('sendUpdateTask', {id: this.task.id, field: 'title', value: title})
       this.titleEditing = false
     },
+    toggleUrgent() {
+      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'urgent', value: !this.task.urgent})
+    },
     moveLeft() {
       const status = this.statuses.indexOf(this.task.status) - 1
       bus.$emit('sendUpdateTask', {id: this.task.id, field: 'status', value: this.statuses[status]})
@@ -126,9 +130,17 @@ export default {
       width: 80%;
     }
 
-    .fa-edit, .fa-save, .fa-bug {
+    .fa-exclamation-circle {
+      margin-right: 2px;
+    }
+
+    .fa-edit, .fa-save, .fa-bug, .fa-exclamation-circle {
       margin-left: 2px;
       color: #aaa;
+
+      &.is-urgent {
+        color: red;
+      }
     }
   }
 </style>
