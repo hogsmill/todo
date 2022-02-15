@@ -3,7 +3,10 @@
     <i v-if="showDetails" class="fas fa-caret-up details" @click="collapse()" />
     <i v-if="!showDetails" class="fas fa-caret-down details" @click="expand()" />
     <h4>
-      <span v-if="!titleEditing">{{ task.title }} {{ showDetails }}</span>
+      <span v-if="!titleEditing">
+        {{ task.title }}
+      </span>
+      <i class="fas fa-exclamation-circle" :class="{ 'is-urgent': task.urgent }" @click="toggleUrgent(task)" />
       <i v-if="!titleEditing" class="fas fa-edit" @click="editTitle()" />
       <input type="text" v-if="titleEditing" id="edit-title" :value="task.title">
       <i v-if="titleEditing" class="far fa-save" @click="saveTitle()" />
@@ -80,7 +83,8 @@ export default {
   props: [
     'task',
     'status',
-    'filter'
+    'filter',
+    'urgent'
   ],
   data() {
     return {
@@ -114,10 +118,13 @@ export default {
       if (this.task.bug) {
         str = str + ' bug'
       }
+      if (this.task.urgent) {
+        str = str + ' urgent'
+      }
       return str
     },
     showTask(task) {
-      let show = true
+      let show = !!task.urgent == this.urgent
       if (task.status != this.status) {
         show = false
       } else {
@@ -135,6 +142,9 @@ export default {
     },
     toggleBug() {
       bus.$emit('sendUpdateTask', {id: this.task.id, field: 'bug', value: !this.task.bug})
+    },
+    toggleUrgent() {
+      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'urgent', value: !this.task.urgent})
     },
     editTitle() {
       this.titleEditing = true
@@ -225,9 +235,16 @@ export default {
       width: 80%;
     }
 
-    .fa-edit, .fa-save, .fa-bug {
+    .fa-exclamation-circle {
+      margin-right: 2px;
+    }
+    .fa-edit, .fa-save, .fa-bug, .fa-exclamation-circle {
       margin-left: 2px;
       color: #aaa;
+
+      &.is-urgent {
+        color: red;
+      }
     }
   }
 </style>

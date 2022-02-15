@@ -7,6 +7,8 @@
         </td>
         <td>
           <input type="text" id="task-name">
+          <br>
+          <input type="checkbox" id="task-urgent"> Urgent?
         </td>
       </tr>
       <TaskType v-if="scope == 'apps'" />
@@ -54,13 +56,14 @@ export default {
   methods: {
     addTask() {
       const title = document.getElementById('task-name').value
+      const urgent = document.getElementById('task-urgent').checked
       const marketing = this.scope == 'apps' ? document.getElementById('marketing-task').checked : false
       const app = this.currentApp
       let appType
       if (this.currentApp && this.scope == 'apps') {
         appType = this.currentAppType
       }
-      bus.$emit('sendAddTask', {title: title, app: app, appType: appType, marketing: marketing, status: 'To Do'})
+      bus.$emit('sendAddTask', {title: title, app: app, appType: appType, marketing: marketing, status: 'To Do', urgent: urgent})
       this.$store.dispatch('updateCurrentTab', marketing ? 'marketing' : 'product')
     }
   }

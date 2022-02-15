@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showTask(task)" class="task">
+  <div v-if="showTask(task)" class="task" :class="{ 'urgent': task.urgent }">
     <i v-if="showDetails" class="fas fa-caret-up details" @click="collapse()" />
     <i v-if="!showDetails" class="fas fa-caret-down details" @click="expand()" />
     <h4>
@@ -32,7 +32,8 @@ export default {
   props: [
     'task',
     'status',
-    'filter'
+    'filter',
+    'urgent'
   ],
   data() {
     return {
@@ -59,7 +60,7 @@ export default {
   },
   methods: {
     showTask(task) {
-      let show = true
+      let show = !!task.urgent == this.urgent
       if (task.status != this.status) {
         show = false
       } else {
@@ -109,7 +110,7 @@ export default {
     h4 {
       font-size: 1.25rem;
     }
-    
+
     .details {
       color: #666;
       font-size: x-large;

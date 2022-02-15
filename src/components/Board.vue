@@ -13,7 +13,7 @@
           <i v-if="!showDone" class="fas fa-eye" @click="expand()" />
           <i v-if="showDone" class="fas fa-eye-slash" @click="collapse()" />
           <br>
-          <select id="filter" @change="setFilter()">
+          <select v-if="scope == 'apps'" id="filter" @change="setFilter()">
             <option value="">
               All
             </option>
@@ -27,13 +27,16 @@
     <tbody>
       <tr>
         <td>
-          <Tasks :status="'To Do'" />
+          <Tasks :status="'To Do'" :urgent="true" />
+          <Tasks :status="'To Do'" :urgent="false" />
         </td>
         <td>
-          <Tasks :status="'Doing'" />
+          <Tasks :status="'Doing'" :urgent="true" />
+          <Tasks :status="'Doing'" :urgent="false" />
         </td>
         <td>
-          <Tasks v-if="showDone" :status="'Done'" :filter="filter" />
+          <Tasks v-if="showDone" :status="'Done'" :filter="filter" :urgent="true" />
+          <Tasks v-if="showDone" :status="'Done'" :filter="filter" :urgent="false" />
         </td>
       </tr>
     </tbody>
@@ -86,6 +89,10 @@ export default {
     td {
       width: 33%;
       vertical-align: top;
+    }
+
+    .urgent {
+      background-color: salmon;
     }
   }
 </style>
