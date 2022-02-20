@@ -35,8 +35,7 @@
           <Tasks :status="'Doing'" :urgent="false" />
         </td>
         <td>
-          <Tasks v-if="showDone" :status="'Done'" :filter="filter" :urgent="true" />
-          <Tasks v-if="showDone" :status="'Done'" :filter="filter" :urgent="false" />
+          <Tasks v-if="showDone" :status="'Done'" :filter="filter" />
         </td>
       </tr>
     </tbody>

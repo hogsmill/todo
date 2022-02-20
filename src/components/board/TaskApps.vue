@@ -238,6 +238,7 @@ export default {
     .fa-exclamation-circle {
       margin-right: 2px;
     }
+
     .fa-edit, .fa-save, .fa-bug, .fa-exclamation-circle {
       margin-left: 2px;
       color: #aaa;
