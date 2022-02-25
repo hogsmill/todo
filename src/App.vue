@@ -38,9 +38,9 @@ export default {
       this.$store.dispatch('updateScope', process.env.VUE_APP_SCOPE)
     }
 
-    bus.$emit('sendGetTasks')
+    bus.emit('sendGetTasks')
 
-    bus.$on('updateTasks', (data) => {
+    bus.on('updateTasks', (data) => {
       this.$store.dispatch('updateTasks', data)
     })
   },

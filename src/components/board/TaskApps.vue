@@ -141,17 +141,17 @@ export default {
       this.showDetails = false
     },
     toggleBug() {
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'bug', value: !this.task.bug})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'bug', value: !this.task.bug})
     },
     toggleUrgent() {
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'urgent', value: !this.task.urgent})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'urgent', value: !this.task.urgent})
     },
     editTitle() {
       this.titleEditing = true
     },
     saveTitle() {
       const title = document.getElementById('edit-title').value
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'title', value: title})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'title', value: title})
       this.titleEditing = false
     },
     editDescription() {
@@ -159,7 +159,7 @@ export default {
     },
     saveDescription() {
       const description = document.getElementById('edit-description').value
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'description', value: description})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'description', value: description})
       this.descriptionEditing = false
     },
     editApp() {
@@ -167,7 +167,7 @@ export default {
     },
     saveApp() {
       const app = this.currentApp
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'app', value: app})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'app', value: app})
       this.appEditing = false
     },
     editAppType() {
@@ -175,22 +175,22 @@ export default {
     },
     saveAppType() {
       const appType = this.currentAppType
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'appType', value: appType})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'appType', value: appType})
       this.appTypeEditing = false
     },
     moveLeft() {
       const status = this.statuses.indexOf(this.task.status) - 1
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'status', value: this.statuses[status]})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'status', value: this.statuses[status]})
     },
     moveRight() {
       const status = this.statuses.indexOf(this.task.status) + 1
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'status', value: this.statuses[status]})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'status', value: this.statuses[status]})
     },
     deleteTask() {
-      bus.$emit('sendDeleteTask', {id: this.task.id})
+      bus.emit('sendDeleteTask', {id: this.task.id})
     },
     cloneTask() {
-      bus.$emit('sendCloneTask', {id: this.task.id})
+      bus.emit('sendCloneTask', {id: this.task.id})
     }
   }
 }

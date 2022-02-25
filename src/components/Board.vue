@@ -58,6 +58,9 @@ export default {
     }
   },
   computed: {
+    scope() {
+      return this.$store.getters.getScope
+    },
     apps() {
       return this.$store.getters.getApps
     },

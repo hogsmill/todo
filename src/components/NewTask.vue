@@ -63,7 +63,7 @@ export default {
       if (this.currentApp && this.scope == 'apps') {
         appType = this.currentAppType
       }
-      bus.$emit('sendAddTask', {title: title, app: app, appType: appType, marketing: marketing, status: 'To Do', urgent: urgent})
+      bus.emit('sendAddTask', {title: title, app: app, appType: appType, marketing: marketing, status: 'To Do', urgent: urgent})
       this.$store.dispatch('updateCurrentTab', marketing ? 'marketing' : 'product')
     }
   }

@@ -82,25 +82,25 @@ export default {
     },
     saveTitle() {
       const title = document.getElementById('edit-title').value
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'title', value: title})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'title', value: title})
       this.titleEditing = false
     },
     toggleUrgent() {
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'urgent', value: !this.task.urgent})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'urgent', value: !this.task.urgent})
     },
     moveLeft() {
       const status = this.statuses.indexOf(this.task.status) - 1
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'status', value: this.statuses[status]})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'status', value: this.statuses[status]})
     },
     moveRight() {
       const status = this.statuses.indexOf(this.task.status) + 1
-      bus.$emit('sendUpdateTask', {id: this.task.id, field: 'status', value: this.statuses[status]})
+      bus.emit('sendUpdateTask', {id: this.task.id, field: 'status', value: this.statuses[status]})
     },
     deleteTask() {
-      bus.$emit('sendDeleteTask', {id: this.task.id})
+      bus.emit('sendDeleteTask', {id: this.task.id})
     },
     cloneTask() {
-      bus.$emit('sendCloneTask', {id: this.task.id})
+      bus.emit('sendCloneTask', {id: this.task.id})
     }
   }
 }
